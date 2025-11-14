@@ -4,10 +4,37 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { useState, useEffect } from "react";
+import { trackMetaEvent } from "@/lib/metaPixel";
 
 export default function CursoBasicoDeEnfermedadRenalCronica() {
   const [isHovered, setIsHovered] = useState(false);
   const courseSlug = "curso-basico-de-enfermedad-renal-cronica";
+
+  // Track PageView cuando se carga la página
+  useEffect(() => {
+    trackMetaEvent("ViewContent", {
+      content_name: "Curso Básico de Enfermedad Renal Crónica - Landing Page",
+      content_category: "curso",
+      content_ids: [courseSlug],
+      content_type: "product",
+      value: 300.0,
+      currency: "MXN",
+    });
+  }, []);
+
+  // Función para trackear clic en botón de compra
+  const handleCompraClick = () => {
+    trackMetaEvent("InitiateCheckout", {
+      content_name: "Curso Básico de Enfermedad Renal Crónica",
+      content_category: "curso",
+      content_ids: [courseSlug],
+      content_type: "product",
+      value: 300.0,
+      currency: "MXN",
+      num_items: 1,
+    });
+  };
+
   return (
     <div className="min-h-screen bg-white">
       <section
@@ -38,7 +65,7 @@ export default function CursoBasicoDeEnfermedadRenalCronica() {
               <p className="text-1xl md:text-4xl text-black mb-6 px-2">
                 No dejes que la Enfermedad Renal Crónica decida por ti
               </p>
-              <Link href={`/${courseSlug}`}>
+              <Link href={`/${courseSlug}`} onClick={handleCompraClick}>
                 <button className="text-lg md:text-2xl inline-block bg-yellow-400 rounded-xl text-white font-semibold shadow-md text-center px-4 md:px-8 py-2 md:py-3 mt-2 hover:bg-yellow-500 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 whitespace-normal w-full max-w-xs md:max-w-md">
                   COMPRA AHORA
                 </button>
@@ -49,7 +76,7 @@ export default function CursoBasicoDeEnfermedadRenalCronica() {
               <div className="relative group">
                 <div className="absolute -inset-4 group-hover:opacity-30 transition-opacity duration-300 "></div>
                 <Image
-                  src="https://lexiahealthacademy.nyc3.cdn.digitaloceanspaces.com/Cursos/ERC/recurso_25.png"
+                  src="/images/recurso_25.png"
                   alt="Curso de Enfermedad Renal Crónica"
                   width={450}
                   height={450}
@@ -397,7 +424,7 @@ export default function CursoBasicoDeEnfermedadRenalCronica() {
               DE $400.00
             </h2>
             <h1 className="text-4xl">A $300.00</h1>
-            <Link href={`/${courseSlug}`}>
+            <Link href={`/${courseSlug}`} onClick={handleCompraClick}>
               <button className="text-lg md:text-2xl inline-block bg-yellow-400 rounded-xl text-white font-semibold shadow-md text-center px-4 md:px-8 py-2 md:py-3 mt-2 hover:bg-yellow-500 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-yellow-300 whitespace-normal w-full max-w-xs md:max-w-md">
                 COMPRA AHORA
               </button>
