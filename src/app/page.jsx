@@ -76,7 +76,7 @@ export default function CursoBasicoDeEnfermedadRenalCronica() {
               <div className="relative group">
                 <div className="absolute -inset-4 group-hover:opacity-30 transition-opacity duration-300 "></div>
                 <Image
-                  src="/images/recurso_25.png"
+                  src="https://lexiahealthacademy.nyc3.cdn.digitaloceanspaces.com/Cursos/ERC/recurso_25.png"
                   alt="Curso de Enfermedad Renal Crónica"
                   width={450}
                   height={450}
